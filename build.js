@@ -1,5 +1,9 @@
 var fs = require('fs');
 
+const SRC_FILE      = __dirname + '/src/index.js',
+      DIST_FILE     = __dirname + '/dist/open-url-scheme.js',
+      DIST_MIN_FILE = __dirname + '/dist/open-url-scheme.min.js';
+
 function requireModule(src, dist, cb) {
     var browserify = require('browserify');
     var b = browserify();
@@ -17,6 +21,8 @@ function minifyJS(src, dist, cb) {
     })
 }
 
-requireModule(__dirname + '/src/index.js', __dirname + '/dist/open-url-scheme.js', function () {
-    minifyJS(__dirname + '/dist/open-url-scheme.js', __dirname + '/dist/open-url-scheme.min.js');
+requireModule(SRC_FILE, DIST_FILE, function () {
+    minifyJS(DIST_FILE, DIST_MIN_FILE, function() {
+        console.log('Done!');
+    });
 });

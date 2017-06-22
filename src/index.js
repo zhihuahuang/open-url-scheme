@@ -16,7 +16,7 @@ function documentHidden() {
     return false;
 }
 
-window.openURLScheme = function openURLScheme(scheme, failure, success) {
+function openURLScheme(scheme, failure, success) {
     if (!iframe) {
         iframe = doc.createElement('iframe');
         iframe.width = 0;
@@ -49,3 +49,9 @@ window.openURLScheme = function openURLScheme(scheme, failure, success) {
         body.removeChild(iframe);
     }, 1000);
 };
+
+window.openURLScheme = openURLScheme;
+
+if (module) {
+    module.exports = openURLScheme;
+}
